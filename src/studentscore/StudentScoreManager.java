@@ -1,9 +1,13 @@
-
 package studentscore;
 
 import java.util.*;
 
 public class StudentScoreManager {
+
+    // 学生人数和成绩范围常量
+    private static final int MIN_STUDENT_COUNT = 1;
+    private static final int MIN_SCORE = 0;
+    private static final int MAX_SCORE = 100;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -12,12 +16,26 @@ public class StudentScoreManager {
         System.out.println("请输入学生人数");
         studentCount = scanner.nextInt();
 
+        // 检查学生人数是否合法
+        if (studentCount < MIN_STUDENT_COUNT) {
+            System.out.println("学生人数必须大于等于1！");
+            return;
+        }
+
         int[] scores = new int[studentCount];
         int totalScore = 0;
 
         for (int i = 0; i < studentCount; i++) {
             System.out.println("输入第" + i + "个学生成绩");
-            scores[i] = scanner.nextInt();
+            int score = scanner.nextInt();
+
+            // 检查成绩是否在合法范围内
+            while (score < MIN_SCORE || score > MAX_SCORE) {
+                System.out.println("成绩必须在0到100之间，请重新输入：");
+                score = scanner.nextInt();
+            }
+
+            scores[i] = score;
             totalScore = totalScore + scores[i];
         }
 
