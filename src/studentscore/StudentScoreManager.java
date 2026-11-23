@@ -22,7 +22,7 @@ public class StudentScoreManager {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             int[] scores = inputScores(scanner);
-            if (scores == null) {
+            if (scores.length == 0) {
                 return;
             }
             double average = calculateAverage(scores);
@@ -45,7 +45,7 @@ public class StudentScoreManager {
 
         if (studentCount < MIN_STUDENT_COUNT) {
             System.out.println("学生人数必须大于等于1！");
-            return null;
+            return new int[0];
         }
 
         int[] scores = new int[studentCount];
